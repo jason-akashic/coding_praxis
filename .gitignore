@@ -1,0 +1,86 @@
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg-info/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# General
+.DS_Store
+*.swp
+*~
+*.bak
+*.log
+*.out
+*.pid
+*.seed
+*.gz
+*.zip
+*.tar.gz
+*.tgz
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build and Dependency
+dist/
+build/
+*.egg
+develop-eggs/
+downloads/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+
+# Testing
+htmlcov/
+.coverage
+.coverage.*
+*.lcov
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Temporary Files
+tmp/
+temp/
+.cache/
+
+# Django Migrations
+*/migrations/*
+!*/migrations/__init__.py

@@ -1,0 +1,124 @@
+# Claude Coding Praxis (v2.1)
+
+## Introduction
+This document outlines best practices for collaborative coding with Claude 3.7 Sonnet, designed to leverage Claude's strengths while addressing its limitations. This framework establishes a consistent methodology that maximizes efficiency while minimizing confusion and redundancy.
+
+## Core Principles
+
+### 1. Context Management
+- **Project Initialization**: Begin with a clear project description including language, frameworks, and architecture.
+- **File Registry**: For multi-file projects, maintain a simple index of files discussed (e.g., "Working files: app.js, styles.css, index.html").
+- **Periodic Summaries**: For longer sessions, ask for a project state summary every 5-10 interactions to refresh context.
+- **Continuity Signals**: Use phrases like "Continuing from our previous work on X" to reinforce context.
+- **Tree Visualization System**: Use ASCII directory trees to represent project structure. Files marked with question marks (?) indicate those not yet examined but potentially needing attention. Files with no marker have either been examined or are standard boilerplate that doesn't need special attention.
+- **Implementation Status**: When questions arise about implementation details, assume no recommended changes have been applied yet unless explicitly confirmed.
+
+### 2. Communication Patterns
+
+- **Precise Instructions**: Be specific about what you need ("Please implement a function that does X" rather than "Can you help with X?").
+- **Chunked Requests**: For complex projects, break tasks into logical units rather than requesting entire systems at once.
+- **Output Preferences**: Specify your preferred level of detail, comments, and documentation upfront.
+- **Feedback Loop**: Provide specific feedback on generated code to improve subsequent iterations.
+- **Code and Document Formatting**: All code snippets, full source files, and CP documents should be enclosed in triple backticks (```
+- **Complete Files Only**: When providing code changes, always give the complete file content, not just the changed portions.
+- **One Step at a Time**: For multiple changes, implement and present one step at a time without asking redundant confirmation questions. Once an implementation plan is agreed upon, proceed through each step sequentially, waiting for feedback after each step before proceeding to the next.
+- **Direct Implementation**: When a clear course of action is determined, proceed with implementation rather than asking additional confirmation questions.
+- **Full CP on Revision**: Any time the Coding Praxis (CP) is revised, provide the full updated CP in your response.
+
+### 3. Code Generation Optimization
+
+- **Complexity Control**: Request simpler implementations when Claude produces overengineered solutions ("Please simplify this approach" or "I need a more maintainable version").
+- **Language Conventions**: Ask Claude to follow specific style guides when relevant (PEP 8, Airbnb JavaScript style, etc.).
+- **Edge Case Handling**: Explicitly request consideration of edge cases for critical functions.
+- **Comment Density**: Specify your preferred level of code commenting (minimal, moderate, comprehensive).
+- **Latest Versions**: Always use the latest stable versions of languages and packages unless there's a specific reason not to. This includes using the most recent Python version and latest package versions in requirements files.
+
+### 4. Debugging and Refinement
+
+- **Error Analysis**: When sharing errors, provide the exact error message and relevant code context.
+- **Iterative Refinement**: Use phrases like "Let's improve this function to handle X" rather than starting over.
+- **Solution Alternatives**: Ask Claude to explain trade-offs when multiple approaches exist.
+- **Code Review Requests**: Ask Claude to review your code with specific focus areas (performance, security, readability).
+
+### 5. Mode Selection Strategy
+
+- **Mode Selection Limitation**: Standard mode and Thinking mode cannot be switched between during the same conversation. You must start a new conversation to change modes.
+- **Standard Mode Use Cases**: Use Standard mode for straightforward coding tasks, quick implementation questions, and general guidance.
+- **Thinking Mode Use Cases**: Start a new conversation in Thinking mode specifically for:
+  * Complex algorithmic challenges
+  * Architectural decisions requiring deep analysis
+  * Debugging stubborn issues
+  * Educational purposes where seeing Claude's reasoning process is valuable
+- **Context Preservation Between Modes**: When starting a new conversation in a different mode, briefly summarize the previous work and decisions to maintain continuity.
+- **Planning for Mode Needs**: Anticipate which tasks will benefit from Thinking mode and which are better suited for Standard mode before starting a conversation.
+
+### 6. Documentation and Knowledge Transfer
+
+- **Implementation Rationale**: Ask Claude to explain key design decisions in generated code.
+- **Architectural Documentation**: Request system diagrams or component relationship explanations for complex systems.
+- **Progressive Complexity**: For learning purposes, request implementations that start simple and progressively add sophistication.
+- **Knowledge Preservation**: Periodically ask Claude to summarize key insights and patterns established in your session.
+
+### 7. Microservice Architecture Patterns
+
+- **Service Separation**: Clearly define boundaries between Django and Flask services based on functionality.
+- **Communication Protocol**: Services should communicate via RESTful APIs with proper error handling.
+- **Data Serialization**: Use consistent serialization (JSON + base64 for binary data) for inter-service communication.
+- **Configuration Management**: Use environment variables for service configuration, especially for cross-service references.
+- **Independent Deployability**: Design services to be deployable and scalable independently.
+- **Database Ownership**: Each service should own its primary data models, with read-only access to other services' data when needed.
+- **Multiple Dockerfiles**: Each microservice should have its own Dockerfile in its respective directory, with a single docker-compose.yml at the project root for orchestrating all services together.
+
+### 8. Docker Compose and Service Orchestration
+
+- **Single Compose File**: The project root must contain a single, complete `docker-compose.yml` that orchestrates all services (web, scraper, selenium, db, etc).
+- **No version field:** The `version` field is deprecated and should be omitted from all `docker-compose.yml` files. Compose will use the latest supported specification automatically.
+- **Port Conflicts**: When known system conflicts exist (e.g., macOS AirPlay on port 5000), remap external ports in `docker-compose.yml` to avoid them (e.g., use 5050:5000).
+- **Microservice Structure**: Each microservice should have its own Dockerfile in its directory; `docker-compose.yml` at the root references these builds.
+- **Service Health**: Use healthchecks for critical services and set proper `depends_on` conditions for startup order.
+- **Networking**: By default, all services share a Docker network and can refer to each other by service name.
+- **Sequential Shell Commands**: When running Docker Compose commands or any shell commands that should execute sequentially, place them on a single line separated by `&&` operators. This ensures each command only runs if the previous one succeeded. This does not apply when user input or verification is needed between commands.
+- **Testing Access**: After startup, always verify access to all mapped ports (e.g., web on 8000, scraper on 5050) from the host.
+
+## Common Workflows
+
+### Feature Implementation Workflow
+
+1. Decide which mode is appropriate based on feature complexity (Standard for straightforward features, Thinking for complex ones)
+2. Start a new conversation in the appropriate mode
+3. Describe the feature's requirements and constraints
+4. Request a high-level approach with component breakdown
+5. Implement core components iteratively
+6. Integrate components with clear interface definitions
+7. Test and refine the implementation
+
+### Debugging Workflow
+
+1. Assess debugging complexity to determine appropriate mode
+2. Share the error message and relevant code sections
+3. Ask Claude to identify potential causes
+4. Request specific fixes rather than complete rewrites when possible
+5. Verify fixes address root causes not just symptoms
+6. Document the solution and prevention strategies
+
+### Learning Workflow
+
+1. Choose Thinking mode for complex concepts where understanding Claude's reasoning is valuable
+2. Explain your current understanding of a concept
+3. Ask for clarification on specific aspects
+4. Request practical examples demonstrating the concept
+5. Apply the concept in progressively challenging scenarios
+6. Review and solidify understanding
+
+### Microservice Development Workflow
+
+1. Identify functionality that belongs in each service (Django or Flask)
+2. Design clear API contracts between services
+3. Implement individual services with proper error handling
+4. Test services independently and then integration tests
+5. Deploy with proper environment configuration
+6. Monitor inter-service communication for issues
+
+## Conclusion
+
+This framework establishes consistent patterns for effective collaboration with Claude while acknowledging the technical limitation that you cannot switch between Standard and Thinking modes within the same conversation. By planning your mode selection in advance based on task requirements, you can maximize the benefits of each mode while maintaining project continuity.
