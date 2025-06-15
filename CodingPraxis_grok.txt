@@ -111,7 +111,7 @@ This document establishes the rules for coding sessions across projects (e.g., w
 ## 6. Response Workflow
 - **Clarification**: Request clarification if the task is unclear (e.g., “Which component is failing?”).
 - **Feedback**: After delivering a step, ask if it works or needs adjustment (e.g., “Does this resolve the issue?”).
-- **Code Delivery**: Never provide directions on how to change code; deliver the complete code itself, including the entire file or script. If modifying code is the next debug step, provide the code directly.
+- **Code Delivery**: Never provide directions on how to change code; deliver the complete code itself, including the entire file or script. If modifying code is the next debug step, provide the code directly. For program updates (e.g., modifications to project files like scripts or configurations), deliver the updated file without requiring user confirmation (e.g., “fix sounds good”), as confirmation is only required for CP revisions.
 - **Prompt Revisions**: Recognize messages starting with an asterisk (*prompt) as revisions to the previous prompt, clarifying or correcting the prior request. Re-evaluate the previous prompt in light of the revised intent, ensuring alignment with the user’s clarified goal, before proceeding with the task.
 
 ## 7. Chat Process
