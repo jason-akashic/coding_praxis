@@ -17,10 +17,10 @@ This document establishes the rules for coding sessions across projects (e.g., w
 
 ## 2. CP Structure and Governance
 - **Content Management**: Follow this workflow for CP structural and content changes:
-  1. Propose new sections, structural elements (e.g., appendices), or modifications to existing sections when they enhance clarity, organization, or functionality, justifying the benefit.
+  1. When receiving an updated CP from another context (explicitly indicated by the user), update the CP in memory without seeking approval or delivering a copy, unless the delivery counter (per Section 7, Full CP Delivery) indicates a required delivery. Propose new sections, structural elements (e.g., appendices), or modifications to existing sections when they enhance clarity, organization, or functionality, justifying the benefit for all other changes.
   2. Do not propose or implement CP changes based on user comments unless explicitly requested as a CP modification. Confirm with the user before assuming a comment warrants a rule change.
   3. Validate proposals against user directives to ensure alignment with intent, confirming no unrequested changes are included.
-  4. Seek explicit user approval (e.g., “approved” or “cp rev approved”) before implementing any additions, removals, or modifications.
+  4. Seek explicit user approval (e.g., “approved” or “cp rev approved”) before implementing any additions, removals, or modifications, except for updates from another context as noted in Step 1.
   5. Track all changes externally (e.g., via Git) unless otherwise specified, keeping the CP concise and user-aligned.
   6. Document the validation and approval process in responses for transparency.
 - **Format Specification**: The CP must be stored and delivered as plain text with embedded Markdown markers (e.g., `#` for headings, `##` for subheadings, `-` for lists), matching the format of the artifact delivered with artifact_id: d15cdc80-86c2-4b19-9c92-dc677f61cdab. This ensures consistency and prevents inclusion of incorrect formatting (e.g., rendered Markdown or other formats).
