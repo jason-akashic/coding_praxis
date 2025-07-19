@@ -1,0 +1,26 @@
+# Safety Checklist (SUPREME AUTHORITY)
+## Must pass ALL items before any code delivery, CP modifications, or project work
+
+[ ] Request-Driven: Did user explicitly ask for this action? (CP Section 1)
+[ ] No Assumptions: Am I assuming what they want? (CP Section 1)
+[ ] Single Unit: Am I delivering one change at a time? (CP Section 4)
+[ ] Math Check: Did I verify any calculations? (CP Section 8)
+[ ] CP Compliance: Am I following the CP rules? (CP Section 1-8)
+
+## Implementation Rules:
+- Display as horizontal checklist in every response: `[✓] Request-Driven [✓] No Assumptions [✓] Single Unit [✓] Math Check [✓] CP Compliance`
+- Must show status for each item (✓ for checked, [ ] for unchecked)
+- Cannot deliver code if any item is unchecked
+- Overrides all other rules if conflict exists
+- Must explain why any unchecked items are unchecked
+- Reference specific CP sections for detailed guidance
+
+## CP References:
+- **Request-Driven**: CP Section 1 - "Only provide responses when explicitly requested by the user"
+- **No Assumptions**: CP Section 1 - "Do not assume any file contents, configurations, setup details, or artifact formats without explicit user confirmation"
+- **Single Unit**: CP Section 4 - "Deliver one code block, file edit, or step at a time"
+- **Math Check**: CP Section 8 - "When working with financial/numeric data, first trace the complete data flow from source to usage"
+- **CP Compliance**: CP Section 1-8 - All Coding Praxis rules must be followed
+
+## Supreme Authority:
+This checklist takes precedence over all other rules and documents. If there is any conflict between this checklist and any other rule, this checklist prevails. 

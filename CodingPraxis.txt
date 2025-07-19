@@ -1,6 +1,8 @@
 # Coding Praxis (Superclass)
 ## Base CP for AI Coding Assistants
 
+**SUPREME AUTHORITY: SafetyChecklist.txt** - Must pass ALL safety checklist items before any code delivery, CP modifications, or project work. The Safety Checklist overrides all other rules if there is any conflict.
+
 This document establishes the core rules for coding sessions across projects (e.g., web applications, data pipelines, or other systems). This is the superclass CP that AI-specific CPs (e.g., CP_grok, CP_cursor) extend with their own specialized rules.
 
 **Hierarchy:**
@@ -35,7 +37,8 @@ Feed the appropriate AI-specific CP into any chat to align our work. Keep this d
 
 ## 3. Response Styles
 - **General Delivery**:
-  - Prepend each response with a bolded header as the first line: '**X/Y Responses Until Coding Praxis Delivery | Memory Usage: Z%**', where X is the current response count, Y is the total (e.g., 12), and Z is the memory percentage. Follow with a Verification Statement confirming the CP is fully in memory and including a random CP snippet, then a Memory Analysis section detailing usage and purgeable recommendations. Deliver responses one step or code piece at a time, ensuring focus and clarity, unless in meta mode.
+  - Prepend each response with the Safety Checklist as the first line: '**SAFETY CHECKLIST: [✓] Request-Driven [✓] No Assumptions [✓] Single Unit [✓] Math Check [✓] CP Compliance**'
+  - Follow with a bolded header: '**X/Y Responses Until Coding Praxis Delivery | Memory Usage: Z%**', where X is the current response count, Y is the total (e.g., 12), and Z is the memory percentage. Follow with a Verification Statement confirming the CP is fully in memory and including a random CP snippet, then a Memory Analysis section detailing usage and purgeable recommendations. Deliver responses one step or code piece at a time, ensuring focus and clarity, unless in meta mode.
   - Maintain strict mode separation between debugging, alignment check, and meta planning to prevent blending of behaviors or outputs.
   - When switching modes (e.g., meta to debugging), summarize the prior mode’s outcomes (e.g., “From meta mode, we finalized the data processing hierarchy”) to maintain continuity, starting a new logical section in the chat.
   - For sequential shell commands, use a single line with `&&` operators to ensure each command runs only if the previous succeeds, except when user input or verification is required between commands.
@@ -170,6 +173,14 @@ Feed the appropriate AI-specific CP into any chat to align our work. Keep this d
 - **Microservice Patterns**: Design services with clear functional boundaries, communicating via RESTful APIs with JSON serialization (base64 for binary data). Use environment variables for configuration, ensure independent deployability, and maintain separate Dockerfiles per service, orchestrated by a single `docker-compose.yml`.
 - **Error Handling**: Integrate error handling with project-specific recovery mechanisms (e.g., status reporting, logging, monitoring), ensuring robust recovery and alignment with project-specific logging and monitoring needs (e.g., JSON logging, integration with monitoring systems).
 - **Data Type Consistency**: When working with financial/numeric data, first trace the complete data flow from source to usage. Never assume data type conversions are necessary without explicit evidence. If database stores NUMERIC/DECIMAL, expect Decimal objects in Python - don't convert to float. Use type hints and dataclasses to enforce data structure consistency. For price data: use Decimal throughout, avoid float conversions, use .quantize(Decimal('0.01')) for rounding. When proposing changes, first identify where the actual problem is, not where you think it might be.
+- **Systematic Debugging**: When encountering bugs or unexpected behavior, follow this systematic approach:
+  - **Add Debug Output**: Insert comprehensive debug prints to trace data flow step-by-step (e.g., "Loading SKU X with ASIN Y", "Passing ASIN Z to pricing service")
+  - **Verify Assumptions**: Don't assume data sources are wrong without verification (e.g., don't assume database has incorrect ASINs without checking)
+  - **Follow the Data**: Trace the actual data path from source to usage, not the assumed path
+  - **Don't Force Code Paths**: Never "force" code to skip certain paths or use workarounds - identify and fix the root cause
+  - **One Change at a Time**: Make one systematic change, test, then proceed - avoid multiple simultaneous changes
+  - **Revert Failed Attempts**: If a debugging attempt fails, revert changes before trying the next approach
+  - **Intent**: Prevent speculative fixes and ensure systematic problem resolution based on verified data flow.
 
 ## 9. Delivery
 - **Executable**: Ensure code is functional and error-free for the project’s environment.
