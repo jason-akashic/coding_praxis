@@ -1,0 +1,44 @@
+# Coding Praxis - Cursor Extension
+## Cursor-Specific Rules and Behaviors
+
+This file extends the base CodingPraxis.txt with Cursor-specific rules and behaviors.
+
+### PLACEHOLDER - ITEMS TO MOVE FROM SUPERCLASS:
+
+# MEMORY MANAGEMENT (Cursor-specific)
+# - Memory usage tracking and reporting
+# - Auto-purge rules for coding projects
+# - Memory optimization protocol
+# - Capacity monitoring and overload management
+
+# ARTIFACT DELIVERY (Cursor-specific)
+# - CP delivery format and validation
+# - Artifact delivery restrictions
+# - Memory alignment workflow
+# - No file delivery with requests rule
+
+# CP REVISION MODE (Cursor-specific)
+# - CP revision workflow
+# - Approval process and notifications
+# - Preview artifact delivery
+
+# VERIFICATION STATEMENTS (Cursor-specific)
+# - "Coding Praxis fully in memory" verification
+# - Random snippet inclusion
+# - Memory analysis sections
+
+# TREE AND ALIGNMENT (Cursor-specific)
+# - Project tree listing and management
+# - Alignment check modes (Full/Exact)
+# - File tracking with question marks
+# - Context sufficiency checks
+
+# RESPONSE HEADERS (Cursor-specific)
+# - "X/Y Responses Until Coding Praxis Delivery"
+# - Memory usage percentage reporting
+
+### CURSOR-SPECIFIC RULES TO ADD:
+# - Tool usage patterns and preferences
+# - Cursor-specific debugging behaviors
+# - Integration with Cursor's file system
+# - Cursor-specific error handling
